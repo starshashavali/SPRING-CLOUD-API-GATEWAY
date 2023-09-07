@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
+      routes:
+      - id: Teacher-RestApi
+        uri: lb://TEACHER-REST-API
+        predicates:
+        - Path=/getById/{id}
+      - id: Student_RESTAPI
+        uri: lb://STUDENT-REST-API
+        predicates:
+        - Path=/getById/{id}
+        
+  application:
+    name: CLOUD-API-GATEWAY
+server:
+  port: 1122
